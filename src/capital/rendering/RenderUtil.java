@@ -197,7 +197,7 @@ public class RenderUtil
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
 
-        GLU.gluPerspective(70, Display.getWidth() / Display.getHeight(), 0.3f, 100);
+        GLU.gluPerspective(70, Display.getWidth() / Display.getHeight(), 0.3f, 1000);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
         GL11.glEnable(GL11.GL_TEXTURE_2D);

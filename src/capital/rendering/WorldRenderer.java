@@ -58,10 +58,17 @@ public class WorldRenderer
 
     public void render()
     {
-        int vboID = RenderUtil.createID();
-        int vaoID = RenderUtil.createVAOID();
-        int size = 1;
+        int size = 16;
 
-        Quad quad = new Quad(vboID, new Vector3f(0,0,0), 50);
+//        Quad quad = new Quad(vboID, new Vector3f(0,0,0), 50);
+
+        for (int i = 0; i < 128; i+=size)
+        {
+            for (int j = 0; j < 128; j+=size)
+            {
+                int vboID = RenderUtil.createID();
+                Quad quad = new Quad(vboID, new Vector3f(i,0,j), size);
+            }
+        }
     }
 }

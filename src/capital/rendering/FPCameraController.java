@@ -14,7 +14,7 @@ public class FPCameraController
     boolean moveForward = false, moveBackward = false;
     boolean strafeLeft = false, strafeRight = false;
     boolean jump = false;
-    static final float speed = 1.0f;
+    static final float speed = 0.1f;
     Game game;
 
     public FPCameraController(Game game)

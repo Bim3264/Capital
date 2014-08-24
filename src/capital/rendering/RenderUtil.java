@@ -55,6 +55,15 @@ public class RenderUtil
         GL30.glBindVertexArray(0);
     }
 
+    public static void renderLine(int vboID)
+    {
+        GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vboID);
+        GL11.glVertexPointer(3, GL11.GL_FLOAT, 0, 0);
+
+        GL11.glDrawArrays(GL11.GL_LINE, 0, 3);
+    }
+
     public static void render(int vboID, int iboID)
     {
         int vaoID = GL30.glGenVertexArrays();
@@ -180,6 +189,11 @@ public class RenderUtil
         renderVAO(vertexArrayID);
 
         cleanUP();
+    }
+
+    public void drawWorld()
+    {
+        
     }
 
     /**

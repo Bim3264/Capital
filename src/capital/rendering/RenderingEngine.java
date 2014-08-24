@@ -10,7 +10,9 @@ import org.newdawn.slick.opengl.TextureLoader;
 import sun.font.TrueTypeFont;
 
 import java.awt.*;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.IntBuffer;
 
@@ -29,15 +31,23 @@ public class RenderingEngine
         RenderUtil.clearScreen();
         Game.camera.translatePosition();
 
-        worldRenderer.render();
-
+//        worldRenderer.render();
+        try
+        {
+            worldRenderer.renderFromBitmap(new FileInputStream("res/rendermap_1.bmp"));
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+            System.err.println("File not found!");
+            System.exit(-1);
+        }
     }
 
     public void update()
     {
         Game.mapKeys();
         Game.camera.update();
-
     }
 
 }

@@ -31,17 +31,7 @@ public class RenderingEngine
         RenderUtil.clearScreen();
         Game.camera.translatePosition();
 
-//        worldRenderer.render();
-        try
-        {
-            worldRenderer.renderFromBitmap(new FileInputStream("res/rendermap_1.bmp"));
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-            System.err.println("File not found!");
-            System.exit(-1);
-        }
+        worldRenderer.render();
     }
 
     public void update()

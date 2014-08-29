@@ -12,10 +12,16 @@ import java.nio.IntBuffer;
 
 public class RenderUtil
 {
+    public static int vboID;
 
-    public static void vertexBufferData(int id, FloatBuffer buffer)
+    public RenderUtil()
     {
-        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, id);
+        vboID = createID();
+    }
+
+    public static void vertexBufferData(FloatBuffer buffer)
+    {
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vboID);
         GL15.glBufferData(GL15.GL_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW);
     }
 
@@ -119,8 +125,8 @@ public class RenderUtil
         vertexBuffer2.put(pos4.x).put(pos4.y).put(pos4.z);
         vertexBuffer2.flip();
 
-        vertexBufferData(vertexBufferedID, vertexBuffer);
-        vertexBufferData(vertexBufferedID + 1, vertexBuffer2);
+        vertexBufferData(vertexBuffer);
+        vertexBufferData(vertexBuffer2);
 
         render(vertexBufferedID);
         render(vertexBufferedID + 1);
@@ -152,8 +158,8 @@ public class RenderUtil
         vertexBuffer2.put(startPos.x).put(startPos.y).put(startPos.z + size);
         vertexBuffer2.flip();
 
-        vertexBufferData(vertexBufferedID, vertexBuffer);
-        vertexBufferData(vertexBufferedID + 1, vertexBuffer2);
+        vertexBufferData(vertexBuffer);
+        vertexBufferData(vertexBuffer2);
 
         render(vertexBufferedID);
         render(vertexBufferedID + 1);
@@ -180,7 +186,7 @@ public class RenderUtil
         vertexBuffer2.put(startPos.x).put(startPos.y).put(startPos.z + size);
         vertexBuffer2.flip();
 
-        vertexBufferData(vertexBufferedID, vertexBuffer);
+        vertexBufferData(vertexBuffer);
         GL20.glVertexAttribPointer(0, 3, GL11.GL_FLOAT, false, 0, 0);
 
 //        vertexBufferData(vertexBufferedID + 1, vertexBuffer2);

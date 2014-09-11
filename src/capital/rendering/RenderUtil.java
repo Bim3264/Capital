@@ -128,13 +128,6 @@ public class RenderUtil
         cleanUP();
     }
 
-    /**
-     * Use to create floor
-     *
-     * @param vertexBufferedID  vboID
-     * @param startPos          Starting vector
-     * @param size              Size of the quad
-     */
     public static void createQuad(int vertexBufferedID, Vector3f startPos, float size)
     {
         FloatBuffer vertexBuffer = BufferUtils.createFloatBuffer(9);
@@ -161,22 +154,37 @@ public class RenderUtil
         cleanUP();
     }
 
+    /**
+     * This method must only be used with the block drawing
+     *
+     * NOTE: Under change and testing by Bim3264
+     * //TODO: Make it a 3d cube
+     *
+     * @param vertexBufferedID      vboID
+     * @param startPos              start drawing pos
+     * @param north                 how much do the drawing span north
+     * @param east                  how much do the drawing span east
+     */
     public static void createQuad(int vertexBufferedID, Vector3f startPos, float north, float east)
     {
         FloatBuffer vertexBuffer = BufferUtils.createFloatBuffer(9);
         FloatBuffer vertexBuffer2 = BufferUtils.createFloatBuffer(9);
 
+        //Top Part
         //Lower-right Triangle
         vertexBuffer.put(startPos.x).put(startPos.y).put(startPos.z);
         vertexBuffer.put(startPos.x + east).put(startPos.y).put(startPos.z);
         vertexBuffer.put(startPos.x + east).put(startPos.y).put(startPos.z + north);
         vertexBuffer.flip();
 
+        //Top Part
         //Upper-left Triangle
         vertexBuffer2.put(startPos.x).put(startPos.y).put(startPos.z);
         vertexBuffer2.put(startPos.x + east).put(startPos.y).put(startPos.z + north);
         vertexBuffer2.put(startPos.x).put(startPos.y).put(startPos.z + north);
         vertexBuffer2.flip();
+
+
 
         vertexBufferData(vertexBufferedID, vertexBuffer);
         vertexBufferData(vertexBufferedID + 1, vertexBuffer2);

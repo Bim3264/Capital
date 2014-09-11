@@ -3,4 +3,4 @@ Capital
 
 Capital Game Engine
 
-Note that some of the code is still indev which means it may either not work or work but destroy your computer.
+This code will be change to private state when all team member notify the source.

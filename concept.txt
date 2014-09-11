@@ -1,0 +1,6 @@
+FPS Game Style
+Cube type world
+Laser Gun
+Robot
+Red team / Blue team
+Online / Bot

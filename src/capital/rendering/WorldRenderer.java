@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.FloatBuffer;
 
+@Deprecated
 public class WorldRenderer
 {
     int size = 32;
@@ -62,6 +63,8 @@ public class WorldRenderer
 
     public void render()
     {
-        RenderUtil.vertexBufferData(pos);
+//        RenderUtil.vertexBufferData(pos);
+
+//        RenderUtil.renderLine();
     }
 }

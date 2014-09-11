@@ -1,5 +1,6 @@
 package capital.rendering;
 
+import capital.component.block.Block;
 import capital.main.Game;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.Display;
@@ -31,7 +32,11 @@ public class RenderingEngine
         RenderUtil.clearScreen();
         Game.camera.translatePosition();
 
-        worldRenderer.render();
+        Block floor = new Block(0, 1, false);
+
+        Block.drawBlockArray(floor, 128, 128);
+
+//        worldRenderer.render();
     }
 
     public void update()

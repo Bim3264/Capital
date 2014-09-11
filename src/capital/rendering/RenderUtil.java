@@ -12,14 +12,8 @@ import java.nio.IntBuffer;
 
 public class RenderUtil
 {
-    public static int vboID;
 
-    public RenderUtil()
-    {
-        vboID = createID();
-    }
-
-    public static void vertexBufferData(FloatBuffer buffer)
+    public static void vertexBufferData(int vboID, FloatBuffer buffer)
     {
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vboID);
         GL15.glBufferData(GL15.GL_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW);
@@ -41,10 +35,10 @@ public class RenderUtil
     }
 
 
-    public static void render(int vertexBufferedID)
+    public static void render(int vboID)
     {
         GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
-        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexBufferedID);
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vboID);
         GL11.glVertexPointer(3, GL11.GL_FLOAT, 0, 0);
 
         GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, 3);
@@ -110,7 +104,7 @@ public class RenderUtil
      * @param pos3
      * @param pos4
      */
-    public static void createQuad(int vertexBufferedID, Vector3f pos1, Vector3f pos2, Vector3f pos3, Vector3f pos4)
+    public static void createQuad(int vboID , Vector3f pos1, Vector3f pos2, Vector3f pos3, Vector3f pos4)
     {
         FloatBuffer vertexBuffer = BufferUtils.createFloatBuffer(9);
         FloatBuffer vertexBuffer2 = BufferUtils.createFloatBuffer(9);
@@ -125,11 +119,11 @@ public class RenderUtil
         vertexBuffer2.put(pos4.x).put(pos4.y).put(pos4.z);
         vertexBuffer2.flip();
 
-        vertexBufferData(vertexBuffer);
-        vertexBufferData(vertexBuffer2);
+        vertexBufferData(vboID, vertexBuffer);
+        vertexBufferData(vboID + 1, vertexBuffer2);
 
-        render(vertexBufferedID);
-        render(vertexBufferedID + 1);
+        render(vboID);
+        render(vboID + 1);
 
         cleanUP();
     }
@@ -158,8 +152,34 @@ public class RenderUtil
         vertexBuffer2.put(startPos.x).put(startPos.y).put(startPos.z + size);
         vertexBuffer2.flip();
 
-        vertexBufferData(vertexBuffer);
-        vertexBufferData(vertexBuffer2);
+        vertexBufferData(vertexBufferedID, vertexBuffer);
+        vertexBufferData(vertexBufferedID + 1, vertexBuffer2);
+
+        render(vertexBufferedID);
+        render(vertexBufferedID + 1);
+
+        cleanUP();
+    }
+
+    public static void createQuad(int vertexBufferedID, Vector3f startPos, float north, float east)
+    {
+        FloatBuffer vertexBuffer = BufferUtils.createFloatBuffer(9);
+        FloatBuffer vertexBuffer2 = BufferUtils.createFloatBuffer(9);
+
+        //Lower-right Triangle
+        vertexBuffer.put(startPos.x).put(startPos.y).put(startPos.z);
+        vertexBuffer.put(startPos.x + east).put(startPos.y).put(startPos.z);
+        vertexBuffer.put(startPos.x + east).put(startPos.y).put(startPos.z + north);
+        vertexBuffer.flip();
+
+        //Upper-left Triangle
+        vertexBuffer2.put(startPos.x).put(startPos.y).put(startPos.z);
+        vertexBuffer2.put(startPos.x + east).put(startPos.y).put(startPos.z + north);
+        vertexBuffer2.put(startPos.x).put(startPos.y).put(startPos.z + north);
+        vertexBuffer2.flip();
+
+        vertexBufferData(vertexBufferedID, vertexBuffer);
+        vertexBufferData(vertexBufferedID + 1, vertexBuffer2);
 
         render(vertexBufferedID);
         render(vertexBufferedID + 1);
@@ -186,7 +206,7 @@ public class RenderUtil
         vertexBuffer2.put(startPos.x).put(startPos.y).put(startPos.z + size);
         vertexBuffer2.flip();
 
-        vertexBufferData(vertexBuffer);
+        vertexBufferData(vertexBufferedID, vertexBuffer);
         GL20.glVertexAttribPointer(0, 3, GL11.GL_FLOAT, false, 0, 0);
 
 //        vertexBufferData(vertexBufferedID + 1, vertexBuffer2);

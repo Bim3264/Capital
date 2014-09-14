@@ -26,7 +26,14 @@ public class DrawableComponent
 
     public DrawableComponent loadAsModel(boolean state)
     {
-        this.loadAsModel = state;
+        if (!opaque)
+        {
+            this.loadAsModel = state;
+        }
+        else
+        {
+            this.loadAsModel = false;
+        }
         return this;
     }
 

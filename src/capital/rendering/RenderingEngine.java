@@ -32,9 +32,10 @@ public class RenderingEngine
         RenderUtil.clearScreen();
         Game.camera.translatePosition();
 
+        //Debug
         Block floor = new Block(0, 1, false);
 
-        Block.drawBlockArray(floor, 2, 2);
+        Block.drawBlock(floor);
 
 //        worldRenderer.render();
     }

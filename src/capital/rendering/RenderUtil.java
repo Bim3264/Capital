@@ -218,11 +218,6 @@ public class RenderUtil
         vertexBuffer4.put(startPos.x + east).put(startPos.y - size).put(startPos.z + north);
         vertexBuffer4.put(startPos.x).put(startPos.y - size).put(startPos.z + north);
 
-        //East Part
-        //Lower-right Triangle
-        vertexBuffer5.put(startPos.x).put(startPos.y).put(startPos.z);
-        vertexBuffer5.put(startPos.x).put(startPos.y + size).put(startPos.z);
-        vertexBuffer5.put(startPos.x + east).put(startPos.y).put(startPos.z + north);
 
         vertexBufferData(vertexBufferedID, vertexBuffer);
         vertexBufferData(vertexBufferedID + 1, vertexBuffer2);

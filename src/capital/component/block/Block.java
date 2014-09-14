@@ -1,34 +1,40 @@
 package capital.component.block;
 
-import capital.component.Drawable;
+import capital.component.DrawableComponent;
 import capital.rendering.RenderUtil;
 import org.lwjgl.util.vector.Vector3f;
 import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 /**
  * Created by Biw on 11/9/2557.
  */
-public class Block extends Drawable
+public class Block extends DrawableComponent
 {
     protected static int d_size = 1;
     protected Vector3f startpos = new Vector3f(0,0,0);
     protected boolean moveable = false;
     protected Texture texture;
+    protected int id;
+
+    public Block(int id)
+    {
+        super(d_size);
+        this.id = id;
+        this.d_size = 1;
+    }
 
     public Block(int id, int d_size)
     {
         super(d_size);
+        this.id = id;
         this.d_size = d_size;
     }
 
     public Block(int id, int d_size, boolean moveable)
     {
         super(d_size);
+        this.id = id;
+        this.d_size = d_size;
         this.moveable = true;
     }
 
@@ -38,6 +44,13 @@ public class Block extends Drawable
         //RenderUtil have the util :D
 
         return this;
+    }
+
+    public static void drawBlock(Block block)
+    {
+        int vboID = RenderUtil.createID();
+
+        RenderUtil.createCube(vboID, block.startpos, block.d_size, block.d_size, block.d_size);
     }
 
     public static void drawBlockArray(Block block, int north, int east)

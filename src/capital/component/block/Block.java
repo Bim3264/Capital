@@ -21,6 +21,7 @@ public class Block extends DrawableComponent
         super(d_size);
         this.id = id;
         this.d_size = 1;
+        this.moveable = false;
     }
 
     public Block(int id, int d_size)
@@ -28,6 +29,7 @@ public class Block extends DrawableComponent
         super(d_size);
         this.id = id;
         this.d_size = d_size;
+        this.moveable = false;
     }
 
     public Block(int id, int d_size, boolean moveable)

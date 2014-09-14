@@ -13,6 +13,8 @@ import java.nio.IntBuffer;
 
 public class RenderUtil
 {
+    public static int NORMAL_MODE = 0x01;
+    public static int MODEL_MODE = 0x02;
 
     public static void vertexBufferData(int vboID, FloatBuffer buffer)
     {
@@ -35,6 +37,11 @@ public class RenderUtil
         GL15.glBufferData(GL15.GL_ARRAY_BUFFER, textureData, GL15.GL_STATIC_DRAW);
     }
 
+    //TODO: Swap rendering mode
+    public static void setRenderingMode(int mode)
+    {
+
+    }
 
     public static void render(int vboID)
     {

@@ -34,7 +34,7 @@ public class RenderingEngine
 
         Block floor = new Block(0, 1, false);
 
-        Block.drawBlockArray(floor, 128, 128);
+        Block.drawBlockArray(floor, 2, 2);
 
 //        worldRenderer.render();
     }

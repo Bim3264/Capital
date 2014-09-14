@@ -1,5 +1,6 @@
 package capital.rendering;
 
+import com.sun.deploy.util.BufferUtil;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.*;
 import org.lwjgl.util.glu.GLU;
@@ -165,10 +166,31 @@ public class RenderUtil
      * @param north                 how much do the drawing span north
      * @param east                  how much do the drawing span east
      */
-    public static void createQuad(int vertexBufferedID, Vector3f startPos, float north, float east)
+    public static void createCube(int vertexBufferedID, Vector3f startPos, float north, float east, float size)
     {
+        //Top Part
         FloatBuffer vertexBuffer = BufferUtils.createFloatBuffer(9);
         FloatBuffer vertexBuffer2 = BufferUtils.createFloatBuffer(9);
+
+        //Bottom Part
+        FloatBuffer vertexBuffer3 = BufferUtils.createFloatBuffer(9);
+        FloatBuffer vertexBuffer4 = BufferUtils.createFloatBuffer(9);
+
+        //East Part
+        FloatBuffer vertexBuffer5 = BufferUtils.createFloatBuffer(9);
+        FloatBuffer vertexBuffer6 = BufferUtils.createFloatBuffer(9);
+
+        //West Part
+        FloatBuffer vertexBuffer7 = BufferUtils.createFloatBuffer(9);
+        FloatBuffer vertexBuffer8 = BufferUtils.createFloatBuffer(9);
+
+        //North Part
+        FloatBuffer vertexBuffer9 = BufferUtils.createFloatBuffer(9);
+        FloatBuffer vertexBuffer10 = BufferUtils.createFloatBuffer(9);
+
+        //South Part
+        FloatBuffer vertexBuffer11 = BufferUtils.createFloatBuffer(9);
+        FloatBuffer vertexBuffer12 = BufferUtils.createFloatBuffer(9);
 
         //Top Part
         //Lower-right Triangle
@@ -184,13 +206,35 @@ public class RenderUtil
         vertexBuffer2.put(startPos.x).put(startPos.y).put(startPos.z + north);
         vertexBuffer2.flip();
 
+        //Bottom Part
+        //Lower-right Triangle
+        vertexBuffer3.put(startPos.x).put(startPos.y - size).put(startPos.z);
+        vertexBuffer3.put(startPos.x + east).put(startPos.y - size).put(startPos.z);
+        vertexBuffer3.put(startPos.x + east).put(startPos.y - size).put(startPos.z + north);
 
+        //Bottom Part
+        //Upper-left Triangle
+        vertexBuffer4.put(startPos.x).put(startPos.y - size).put(startPos.z);
+        vertexBuffer4.put(startPos.x + east).put(startPos.y - size).put(startPos.z + north);
+        vertexBuffer4.put(startPos.x).put(startPos.y - size).put(startPos.z + north);
+
+        //East Part
+        //Lower-right Triangle
+        vertexBuffer5.put(startPos.x).put(startPos.y).put(startPos.z);
+        vertexBuffer5.put(startPos.x).put(startPos.y + size).put(startPos.z);
+        vertexBuffer5.put(startPos.x + east).put(startPos.y).put(startPos.z + north);
 
         vertexBufferData(vertexBufferedID, vertexBuffer);
         vertexBufferData(vertexBufferedID + 1, vertexBuffer2);
+        vertexBufferData(vertexBufferedID + 2, vertexBuffer3);
+        vertexBufferData(vertexBufferedID + 3, vertexBuffer4);
+        vertexBufferData(vertexBufferedID + 4, vertexBuffer5);
 
         render(vertexBufferedID);
         render(vertexBufferedID + 1);
+        render(vertexBufferedID + 2);
+        render(vertexBufferedID + 3);
+        render(vertexBufferedID + 4);
 
         cleanUP();
     }

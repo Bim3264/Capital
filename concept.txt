@@ -4,3 +4,4 @@ Laser Gun
 Robot
 Red team / Blue team
 Online / Bot
+Model from blender (.obj file)

@@ -35,14 +35,7 @@ public class Block extends Drawable
     //TODO: Add the texture to the quad correctly. (Teams)
     public Block addTexture(String format, String filename)
     {
-        try
-        {
-            texture = TextureLoader.getTexture(format, new FileInputStream(filename));
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        //RenderUtil have the util :D
 
         return this;
     }
@@ -51,6 +44,6 @@ public class Block extends Drawable
     {
         int vboID = RenderUtil.createID();
 
-        RenderUtil.createQuad(vboID, block.startpos, north, east);
+        RenderUtil.createCube(vboID, block.startpos, north, east, block.d_size);
     }
 }

@@ -1,14 +1,13 @@
-package capital.rendering;
+package capital.graphics;
 
-import capital.component.Mesh;
 import capital.main.Game;
-import capital.util.ResouceLoader;
+import capital.util.ResourceLoader;
+import org.lwjgl.opengl.GL11;
 
 public class RenderingEngine
 {
     public static RenderingEngine instance = new RenderingEngine();
     public static WorldRenderer worldRenderer = new WorldRenderer();;
-    public Mesh mesh;
 
     public void init()
     {
@@ -20,13 +19,8 @@ public class RenderingEngine
         RenderUtil.clearScreen();
         Game.camera.translatePosition();
 
-        //Debug
-//        Block floor = new Block(0, 1, false);
-
-//        Block.drawBlock(floor);
-
-        mesh = ResouceLoader.loadMesh("cube.obj");
-        mesh.draw();
+        Model model = ResourceLoader.loadModel("cube.obj");
+        model.draw();
     }
 
     public void update()

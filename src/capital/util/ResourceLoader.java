@@ -1,7 +1,7 @@
 package capital.util;
 
-import capital.component.Mesh;
-import capital.rendering.Vertex;
+import capital.graphics.Model;
+import capital.graphics.Vertex;
 import org.lwjgl.util.vector.Vector3f;
 
 import java.io.BufferedReader;
@@ -9,38 +9,13 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 /**
- * Created by Biw on 14/9/2557.
+ * Created by Biw on 27/9/2557.
  */
-public class ResouceLoader
+public class ResourceLoader
 {
-    public static String loadShader(String filename)
+    public static Model loadModel(String filename)
     {
-        StringBuilder shaderSource = new StringBuilder();
-        BufferedReader shaderReader = null;
 
-        try
-        {
-            shaderReader = new BufferedReader(new FileReader("./res/shaders/" + filename));
-            String line;
-            while ((line = shaderReader.readLine()) != null)
-            {
-                shaderSource.append(line).append("\n");
-            }
-
-            shaderReader.close();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            System.exit(1);
-        }
-
-
-        return shaderSource.toString();
-    }
-
-    public static Mesh loadMesh(String filename)
-    {
         String[] splitArray = filename.split("\\.");
         String ext = splitArray[splitArray.length - 1];
 
@@ -71,8 +46,8 @@ public class ResouceLoader
                 else if (tokens[0].equals("v"))
                 {
                     vertices.add(new Vertex(new Vector3f(Float.valueOf(tokens[1]),
-                            Float.valueOf(tokens[2]),
-                            Float.valueOf(tokens[3]))));
+                                                         Float.valueOf(tokens[2]),
+                                                         Float.valueOf(tokens[3]))));
                 }
                 else if (tokens[0].equals("f"))
                 {
@@ -84,7 +59,7 @@ public class ResouceLoader
 
             meshReader.close();
 
-            Mesh res = new Mesh();
+            Model res = new Model();
             Vertex[] vertexData = new Vertex[vertices.size()];
             vertices.toArray(vertexData);
 

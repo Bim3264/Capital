@@ -1,4 +1,4 @@
-package capital.rendering;
+package capital.graphics;
 
 import capital.main.Game;
 import org.lwjgl.input.Keyboard;
@@ -119,4 +119,5 @@ public class FPCameraController
             }
         }
     }
+
 }

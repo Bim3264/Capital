@@ -1,4 +1,4 @@
-package capital.rendering;
+package capital.graphics;
 
 import org.lwjgl.util.vector.Vector3f;
 

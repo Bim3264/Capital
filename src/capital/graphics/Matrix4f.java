@@ -1,4 +1,4 @@
-package capital.rendering;
+package capital.graphics;
 
 /**
  * Created by Biw on 14/9/2557.

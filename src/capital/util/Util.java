@@ -1,7 +1,7 @@
 package capital.util;
 
-import capital.rendering.Matrix4f;
-import capital.rendering.Vertex;
+import capital.graphics.Matrix4f;
+import capital.graphics.Vertex;
 import org.lwjgl.BufferUtils;
 
 import java.nio.FloatBuffer;

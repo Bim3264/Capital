@@ -1,8 +1,6 @@
-package capital.rendering;
+package capital.graphics;
 
-import capital.rendering.quad.Quad;
 import org.lwjgl.BufferUtils;
-import org.lwjgl.util.vector.Vector3f;
 
 import javax.imageio.ImageIO;
 import java.awt.Color;

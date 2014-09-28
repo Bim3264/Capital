@@ -1,7 +1,7 @@
 package capital.main;
 
 import capital.component.GameComponent;
-import capital.rendering.FPCameraController;
+import capital.graphics.FPCameraController;
 import org.lwjgl.input.Keyboard;
 
 public class Game

@@ -1,8 +1,6 @@
 package capital.component;
 
-import capital.main.Game;
-import capital.rendering.RenderUtil;
-import capital.rendering.RenderingEngine;
+import capital.graphics.RenderingEngine;
 import capital.util.Time;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;

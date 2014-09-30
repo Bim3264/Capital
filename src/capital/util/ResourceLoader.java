@@ -26,8 +26,9 @@ public class ResourceLoader
             System.exit(1);
         }
 
-        ArrayList<Vertex> vertices = new ArrayList<Vertex>();
-        ArrayList<Integer> indices = new ArrayList<Integer>();
+        ArrayList<Vertex>   vertices    = new ArrayList<Vertex>();
+        ArrayList<Float>    uv          = new ArrayList<Float>();
+        ArrayList<Integer>  indices     = new ArrayList<Integer>();
 
         BufferedReader meshReader = null;
 
@@ -49,6 +50,11 @@ public class ResourceLoader
                                                          Float.valueOf(tokens[2]),
                                                          Float.valueOf(tokens[3]))));
                 }
+                else if (tokens[0].equals("vt"))
+                {
+                    uv.add(Float.parseFloat(tokens[1]) - 1);
+                    uv.add(Float.parseFloat(tokens[2]) - 1);
+                }
                 else if (tokens[0].equals("f"))
                 {
                     indices.add(Integer.parseInt(tokens[1]) - 1);
@@ -63,10 +69,14 @@ public class ResourceLoader
             Vertex[] vertexData = new Vertex[vertices.size()];
             vertices.toArray(vertexData);
 
+            Float[] uvData = new Float[uv.size()];
+            uv.toArray(uvData);
+
             Integer[] indexData = new Integer[indices.size()];
             indices.toArray(indexData);
 
             res.addVertices(vertexData, Util.toIntArray(indexData));
+            res.addTextureCoordinate(uvData);
 
             return res;
         }

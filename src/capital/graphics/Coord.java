@@ -7,13 +7,11 @@ public class Coord
 {
     public float x;
     public float y;
-    public float z;
 
-    public Coord(float x, float y, float z)
+    public Coord(float x, float y)
     {
         this.x = x;
         this.y = y;
-        this.z = z;
     }
 
     public float getX()
@@ -36,13 +34,5 @@ public class Coord
         this.y = y;
     }
 
-    public float getZ()
-    {
-        return z;
-    }
 
-    public void setZ(float z)
-    {
-        this.z = z;
-    }
 }

@@ -41,6 +41,7 @@ public class ResourceLoader
             {
                 String[] tokens = line.split(" ");
                 tokens = Util.removeEmptyStrings(tokens);
+                tokens = Util.removeSlashStrings(tokens);
 
                 if (tokens.length == 0 || tokens[0].equals("#"))
                     continue;
